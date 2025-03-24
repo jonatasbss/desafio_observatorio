@@ -1,0 +1,57 @@
+# Ignorar arquivos e diretórios do ambiente virtual
+.venv/
+env/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Ignorar configurações do VSCode e PyCharm
+.vscode/
+.idea/
+*.iml
+
+# Arquivos de log e de execução
+*.log
+*.pid
+*.out
+*.err
+
+# Arquivos do banco de dados SQLite (caso esteja usando)
+*.sqlite3
+*.db
+*.db-journal
+
+# Arquivos de credenciais e configurações sensíveis
+.env
+.env.*
+config.yaml
+secrets.json
+
+# Arquivos do Alembic (migrations geradas automaticamente podem ser commitadas, mas cache não)
+migrations/alembic.ini
+migrations/versions/*.pyc
+alembic.ini
+
+# Docker e dependências
+docker-compose.override.yml
+.Dockerfile.swp
+
+# Cache do Jupyter Notebook (caso use)
+.ipynb_checkpoints/
+
+# Arquivos de dependências gerados automaticamente
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Pytest e cobertura de testes
+.coverage
+htmlcov/
+*.cover
+*.py,cover
