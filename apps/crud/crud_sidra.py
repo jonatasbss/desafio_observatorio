@@ -54,23 +54,23 @@ def get_dados(db: Session, filtros: FiltroBusca) -> List[DadosTransformacao]:
     )
 
     if filtros.atividade_economica_codigo_cnae:
-        query = query.filter(
-            filtros.atividade_economica_codigo_cnae == DadosTransformacao.atividade_economica.codigo_cnae
+        query = query.join(AtividadeEconomica).filter(
+            AtividadeEconomica.codigo_cnae == filtros.atividade_economica_codigo_cnae
         )
 
     if filtros.atividade_economica_descricao:
-        query = query.filter(
-            DadosTransformacao.atividade_economica.descricao.ilike(f"%{filtros.atividade_economica_descricao}%")
+        query = query.join(AtividadeEconomica).filter(
+            AtividadeEconomica.descricao.ilike(f"%{filtros.atividade_economica_descricao}%")
         )
 
     if filtros.componente_nome:
-        query = query.filter(
-            DadosTransformacao.componente_transformacao.nome.ilike(f"%{filtros.componente_nome}%")
+        query = query.join(ComponenteTransformacao).filter(
+            ComponenteTransformacao.nome.ilike(f"%{filtros.componente_nome}%")
         )
 
     if filtros.periodo_ano:
-        query = query.filter(
-            filtros.periodo_ano == DadosTransformacao.periodo.ano
+        query = query.join(Periodo).filter(
+            Periodo.ano == filtros.periodo_ano
         )
 
     return query.all()
