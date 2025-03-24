@@ -33,6 +33,7 @@ secrets.json
 # Arquivos do Alembic (migrations geradas automaticamente podem ser commitadas, mas cache não)
 migrations/alembic.ini
 migrations/versions/*.pyc
+migrations/versions/*.py
 alembic.ini
 
 # Docker e dependências
