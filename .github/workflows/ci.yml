@@ -1,0 +1,40 @@
+name: CI Pipeline
+
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  built-and-test:
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Configurar ambiente Python
+        uses: actions/setup-python@v4
+
+      - name: Instalar dependências
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Executar testes
+        run: |
+          source venv/bin/activate
+          pytest --disable-warnings --cov=apps tests/
+
+      - name: Verificar linting com flake8
+        run: |
+          source venv/bin/activate
+          flake8 apps tests
